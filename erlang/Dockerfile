@@ -2,8 +2,9 @@ FROM chus1818/root
 MAINTAINER Jesus Prieto <prietoj@gmail.com>
 
 # Workaround to install fuse which is a dependency of erlang in the container
-RUN apt-get install libfuse2
+USER root
 WORKDIR /tmp
+RUN apt-get install libfuse2
 RUN apt-get download fuse
 RUN dpkg-deb -x fuse_* .
 RUN dpkg-deb -e fuse_*
@@ -22,4 +23,5 @@ RUN tar zxvf otp_src_17.4.tar.gz
 WORKDIR /tmp/otp_src_17.4
 RUN ./configure && make && make install
 
-WORKDIR /home/developer
+WORKDIR $DEVELOPER_HOME
+USER developer

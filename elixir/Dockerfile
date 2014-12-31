@@ -1,7 +1,13 @@
-FROM chus1818/root
+FROM chus1818/erlang:17.4
 MAINTAINER Jesus Prieto <chus1818@gmail.com>
 
-RUN wget http://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && sudo dpkg -i erlang-solutions_1.0_all.deb
-RUN rm erlang-solutions_1.0_all.deb
-RUN sudo apt-get update
-RUN sudo apt-get -y install elixir
+USER root
+WORKDIR /tmp
+RUN wget https://github.com/elixir-lang/elixir/archive/v1.0.2.tar.gz
+RUN tar -zxvf v1.0.2.tar.gz
+WORKDIR elixir-1.0.2
+RUN make
+RUN make install
+
+WORKDIR $DEVELOPER_HOME
+USER developer
