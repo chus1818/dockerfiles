@@ -1,5 +1,5 @@
 FROM chus1818/root
-MAINTAINER Jesus Prieto <prietoj@gmail.com>
+MAINTAINER Jesus Prieto <chus1818@gmail.com>
 
 # Workaround to install fuse which is a dependency of erlang in the container
 USER root
@@ -15,7 +15,7 @@ RUN dpkg -i /fuse.deb
 
 # Erlang dependencies
 RUN apt-get -yq install build-essential libncurses5-dev openssl libssl-dev\
-                             fop xsltproc unixodbc-dev
+                        fop xsltproc unixodbc-dev
 
 # Erlang compilation
 RUN wget http://erlang.org/download/otp_src_17.4.tar.gz
